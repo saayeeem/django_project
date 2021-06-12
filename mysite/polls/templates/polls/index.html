@@ -1,9 +1,18 @@
-{% if latest_question_list %}
-    <ul>
+{% extends "main_menu.html" %}
+<!--extends comes first then load -->
+
+
+<div class="container">
+    {% block content %}
+    <h1 class="display-2 text-center">Here is some polls Question</h1>
+   {% if latest_question_list %}
+    <ul class="list-group">
     {% for question in latest_question_list %}
-    <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
+    <li class="list-group-item"><a class="list-group-item list-group-item-action" href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li>
 {% endfor %}
     </ul>
 {% else %}
     <p>No polls are available.</p>
 {% endif %}
+{% endblock %}
+</div>
